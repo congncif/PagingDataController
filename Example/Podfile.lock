@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (3.4.0)
+  - PagingDataController (0.1.1):
+    - SiFUtilities (~> 0.1)
+    - SVPullToRefresh (~> 0.4)
+  - SiFUtilities (0.1.0)
+  - SVPullToRefresh (0.4.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - PagingDataController (from `../`)
+
+EXTERNAL SOURCES:
+  PagingDataController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  PagingDataController: 1f2be068cb3ba6423eb07a7cbf5904c27defaba1
+  SiFUtilities: 0330724a47578857782ca30d7e6008484d72e70a
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+
+PODFILE CHECKSUM: 4e3c4f270c38447bcaca40526b506e06be44df57
+
+COCOAPODS: 1.0.0

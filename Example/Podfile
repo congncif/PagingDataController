@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'PagingDataController_Example' do
+  pod 'PagingDataController', :path => '../'
+  pod 'Alamofire', '~> 3.4'
+
+  target 'PagingDataController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

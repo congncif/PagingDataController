@@ -1,0 +1,10 @@
+framework module PagingDataController {
+  umbrella header "PagingDataController.h"
+
+  export *
+  module * { export * }
+}
+
+module PagingDataController.Swift {
+    header "PagingDataController-Swift.h"
+}
