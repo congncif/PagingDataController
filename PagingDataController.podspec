@@ -41,5 +41,4 @@ s.vendored_frameworks = 'PagingDataController/PagingDataController.framework'
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'SVPullToRefresh', '~> 0.4'
-    s.dependency 'SiFUtilities', '~> 0.1'
 end
