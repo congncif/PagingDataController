@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PagingDataController'
-  s.version          = '0.1.2'
+  s.version          = '0.2.0'
   s.summary          = 'A Swift pattern to apply paging data to UIViewController'
 
 # This description is used to generate tags and improve search results.

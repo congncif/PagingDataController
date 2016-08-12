@@ -4,9 +4,45 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Frameworks/libswiftContacts.dylib</key>
+		<data>
+		r0U6/LSHE4Uktwn0R5fk2AZVtuQ=
+		</data>
+		<key>Frameworks/libswiftCore.dylib</key>
+		<data>
+		LWEza/ce+vKmDH2HB4li00D/r5Q=
+		</data>
+		<key>Frameworks/libswiftCoreGraphics.dylib</key>
+		<data>
+		kbmpVxcXvdjp9HzXWvtbCossw5M=
+		</data>
+		<key>Frameworks/libswiftCoreImage.dylib</key>
+		<data>
+		cxUCmHGAtsxaycv/IijPJ2wJQks=
+		</data>
+		<key>Frameworks/libswiftDarwin.dylib</key>
+		<data>
+		xP/CDhcT+znfITRzk+W1+KgnJbw=
+		</data>
+		<key>Frameworks/libswiftDispatch.dylib</key>
+		<data>
+		ov8ZU0trdlbP92WN2EhM5OnI4ZU=
+		</data>
+		<key>Frameworks/libswiftFoundation.dylib</key>
+		<data>
+		7l8rD4srFrajY6NJ0Acb7g3y5Yo=
+		</data>
+		<key>Frameworks/libswiftObjectiveC.dylib</key>
+		<data>
+		WzRbzr9R1ZxKA0vB8fDaV79lKHg=
+		</data>
+		<key>Frameworks/libswiftUIKit.dylib</key>
+		<data>
+		L8isWrCOUUbGi/tijcdwSQFTYjc=
+		</data>
 		<key>Headers/PagingDataController-Swift.h</key>
 		<data>
-		N35JY7Y7+o1Qy6jpFPnjVGBP9GQ=
+		lz1Fs5oYWIchG1OrOoBkYEeGsaU=
 		</data>
 		<key>Headers/PagingDataController.h</key>
 		<data>
@@ -14,23 +50,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Y90ZCGuwnivaASpANMJoxZXzlkg=
+		X9Pc2GhQG1fEoaj0zC8MhFEbedI=
 		</data>
 		<key>Modules/PagingDataController.swiftmodule/arm.swiftdoc</key>
 		<data>
-		vX3li+0pmJfxIOleJRvM7XzulwQ=
+		YoSy6i8r1o2kd0QtthTY1T2t7S4=
 		</data>
 		<key>Modules/PagingDataController.swiftmodule/arm.swiftmodule</key>
 		<data>
-		1/dTubQe4rzf2KnC/IJyuhXuAZA=
+		F5XEp1gQ5+Z2v7pkUfpqrSwyPcc=
 		</data>
 		<key>Modules/PagingDataController.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		7BUlQBrhUQ77wbgVsUxliml4eHA=
+		jc5Ju9zwgB4QO+m1phtkVmrDALo=
 		</data>
 		<key>Modules/PagingDataController.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		N4e6kMgmxEkeM5uBymNAvCOl6T8=
+		jqEXNLqgNRbaR4WbZzeSmFw3am0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,15 +75,114 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Frameworks/libswiftContacts.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			r0U6/LSHE4Uktwn0R5fk2AZVtuQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			8HozedoRCFaTqpkDLkIIC4Rms88/aZeHOjsWukS/N1k=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftCore.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LWEza/ce+vKmDH2HB4li00D/r5Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			YvpmxZTrZdhRE7ODbMUAcby8oO2Opv7O/sI/22Mg+oU=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftCoreGraphics.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			kbmpVxcXvdjp9HzXWvtbCossw5M=
+			</data>
+			<key>hash2</key>
+			<data>
+			CMURcRVqGEDWHlGZD6Xy507dhSwZlL6ji9HktNhRtMs=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftCoreImage.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			cxUCmHGAtsxaycv/IijPJ2wJQks=
+			</data>
+			<key>hash2</key>
+			<data>
+			knn1Mj+12fxqMBoJbPIV6XXzBUXnPbYR5DYTPMrKPpc=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftDarwin.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			xP/CDhcT+znfITRzk+W1+KgnJbw=
+			</data>
+			<key>hash2</key>
+			<data>
+			iZGTRLmuFjriX9fFSyjLMz00phdOvabAeAZ/BTyZ64U=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftDispatch.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ov8ZU0trdlbP92WN2EhM5OnI4ZU=
+			</data>
+			<key>hash2</key>
+			<data>
+			8u761tYwesJJvvXmzcIYUGXZVgwX8vo2VFhOGFXuofY=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftFoundation.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			7l8rD4srFrajY6NJ0Acb7g3y5Yo=
+			</data>
+			<key>hash2</key>
+			<data>
+			6zZPdOW0qEV2N/l/YujeXpOXvuP//ryQaeJNKbk/pGQ=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftObjectiveC.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			WzRbzr9R1ZxKA0vB8fDaV79lKHg=
+			</data>
+			<key>hash2</key>
+			<data>
+			eE28f029Edh4Qb/UDnbJltSGNfm2rESmivkko/8o1HM=
+			</data>
+		</dict>
+		<key>Frameworks/libswiftUIKit.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			L8isWrCOUUbGi/tijcdwSQFTYjc=
+			</data>
+			<key>hash2</key>
+			<data>
+			+cQGeG8Jv/QMUOZgoV1Ord89miYyYepkR5jHzJxawXc=
+			</data>
+		</dict>
 		<key>Headers/PagingDataController-Swift.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			N35JY7Y7+o1Qy6jpFPnjVGBP9GQ=
+			lz1Fs5oYWIchG1OrOoBkYEeGsaU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Uea1SUQsDO3iR6XwUM9Q3TxRzxp6qaawsbgttS4HA6w=
+			WrkXRS405DdIKGuEVgMKq/R2wbO/200DT/NlevDbJ7Q=
 			</data>
 		</dict>
 		<key>Headers/PagingDataController.h</key>
@@ -65,44 +200,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vX3li+0pmJfxIOleJRvM7XzulwQ=
+			YoSy6i8r1o2kd0QtthTY1T2t7S4=
 			</data>
 			<key>hash2</key>
 			<data>
-			4jL5SYsuUZwVrVKRBF0W93GFHjdKVzLWV5emq9vS8g4=
+			CfL6PXbGuDBetklLKsOUgaXg3x+XIBVLZxk7X7WqKPY=
 			</data>
 		</dict>
 		<key>Modules/PagingDataController.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1/dTubQe4rzf2KnC/IJyuhXuAZA=
+			F5XEp1gQ5+Z2v7pkUfpqrSwyPcc=
 			</data>
 			<key>hash2</key>
 			<data>
-			xrCuzbLqg+HZ0ZaNsRiJt3tHKqQO2t0xv3gjxy/+aTc=
+			hhCg98CwlB+8U78WrQCHljf0jr2AjFUcGPSKltsbezw=
 			</data>
 		</dict>
 		<key>Modules/PagingDataController.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			7BUlQBrhUQ77wbgVsUxliml4eHA=
+			jc5Ju9zwgB4QO+m1phtkVmrDALo=
 			</data>
 			<key>hash2</key>
 			<data>
-			HsTmECpPnCMRxnb73uLJ1+KT7c6FmxT04MLIAz3OSiA=
+			4TzXbQhi6Gt8swdalxDtHiL7rR66m6X8WztI2GMyzjU=
 			</data>
 		</dict>
 		<key>Modules/PagingDataController.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			N4e6kMgmxEkeM5uBymNAvCOl6T8=
+			jqEXNLqgNRbaR4WbZzeSmFw3am0=
 			</data>
 			<key>hash2</key>
 			<data>
-			2wW6diMy/znEyRIIl8UtWTAh8X3/ZC9AZA3/lVFHrAQ=
+			59cVbtCr/VY0Z2D/hoj0rWKUavwFx9QZfgG/h2jKjSo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

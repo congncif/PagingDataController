@@ -99,17 +99,30 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 
 @interface UICollectionView (SWIFT_EXTENSION(PagingDataController))
-- (void)reloadContent;
+- (void)reloadContentWithInstantReloadContent:(BOOL)flag end:(void (^ _Nullable)(void))end;
 @end
 
 
 @interface UIScrollView (SWIFT_EXTENSION(PagingDataController))
-- (void)reloadContent;
+- (void)reloadContentWithInstantReloadContent:(BOOL)flag end:(void (^ _Nullable)(void))end;
 @end
 
 
 @interface UITableView (SWIFT_EXTENSION(PagingDataController))
-- (void)reloadContent;
+- (void)reloadContentWithInstantReloadContent:(BOOL)flag end:(void (^ _Nullable)(void))end;
+@end
+
+
+@interface UIViewController (SWIFT_EXTENSION(PagingDataController))
+@property (nonatomic, readonly) BOOL instantReloadContent;
+@property (nonatomic, readonly, strong) UIScrollView * _Nonnull pagingScrollView;
+- (void)setupDefaultForPaging;
+- (void)setupPullToRefreshView;
+- (void)setupInfiniteScrollingView;
+- (void)pullDownAction:(void (^ _Nullable)(void))end;
+- (void)infiniteAction:(void (^ _Nullable)(void))end;
+- (void)pageDataSourceDidChanged:(BOOL)moreChanged hasMore:(BOOL)hasMore;
+- (void)checkInfiniteView:(BOOL)hasMore;
 @end
 
 #pragma clang diagnostic pop
