@@ -2,11 +2,8 @@ use_frameworks!
 
 target 'PagingDataController_Example' do
   pod 'PagingDataController', :path => '../'
+  pod 'SiFUtilities'
   pod 'Alamofire', '~> 3.4'
+  pod 'SDWebImage', '~> 3.8'
 
-  target 'PagingDataController_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
