@@ -47,7 +47,7 @@ You can override ```setupPullToRefreshView``` & ```setupInfiniteScrollingView```
 
   * Override ```pullDownAction``` & ```infiniteAction``` to fetch data. Using ```loadDataPage``` to get data from provider. This method is implemented by framework. 
   
-```
+```swift
 override func pullDownAction(end: (() -> ())? = nil) {
         loadFirstPage(end)
     }
