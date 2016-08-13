@@ -35,6 +35,9 @@ class GithubUsersViewControllerProvider: PagingProviderProtocol {
 ```
 S2. Implement view controller conform ```PagingControllerProtocol``` protocol
   * Declare provider
+```swift
+    lazy var provider = GithubUsersViewControllerProvider()
+```
   * Setup for paging: default using ```setupDefaultForPaging``` method. 
     + You can custom more by overriding ```pagingScrollView``` getter & return a scroll to display data (by default It auto finds a scrollView in viewController to use as ```pagingScrollView```). 
         Example:
