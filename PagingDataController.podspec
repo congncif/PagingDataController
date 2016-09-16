@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PagingDataController'
-  s.version          = '0.2.1'
+  s.version          = '1.0.0'
   s.summary          = 'A Swift pattern to apply paging data to UIViewController'
 
 # This description is used to generate tags and improve search results.
@@ -40,5 +40,5 @@ Magic !!!
 s.vendored_frameworks = 'PagingDataController/PagingDataController.framework'
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'SVPullToRefresh', '~> 0.4'
+  s.dependency 'SVPullToRefresh'
 end
