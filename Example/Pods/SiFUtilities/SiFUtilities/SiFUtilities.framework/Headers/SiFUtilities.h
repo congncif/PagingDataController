@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//swift 3 - 1.0.0
 //! Project version number for SiFUtilities.
 FOUNDATION_EXPORT double SiFUtilitiesVersionNumber;
 

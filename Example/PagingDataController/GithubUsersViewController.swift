@@ -12,66 +12,72 @@ import SiFUtilities
 import SDWebImage
 
 class GithubUsersViewController: UIViewController , PagingControllerProtocol {
-
     @IBOutlet weak var tableView: UITableView!
     
+    //////////////////////////////////////////////////////////////////////////////////////
+    
     //Provider definition
-    lazy var provider = GithubUsersViewControllerProvider()
+    lazy var provider = GithubUsersProvider()
     
     //setup default
-    override func viewFinishedLayout() {
-        super.viewFinishedLayout()
+    override func viewDidFinishLayout() {
+        super.viewDidFinishLayout()
         
-        self.setupDefaultForPaging()
-        self.dataSource.delegate = self
+        setupDefaultForPaging()
+        dataSource.delegate = self
 
-        self.loadData()
+        loadData()
     }
     
-    override func pullDownAction(end: (() -> ())? = nil) {
-        loadFirstPage(end)
+    override func onPullDown(done: (() -> ())?) {
+        loadFirstPage(done: done)
     }
     
-    override func infiniteAction(end: (() -> ())? = nil) {
-        loadNextPage(end)
+    override func onPullUp(done: (() -> ())?) {
+        loadNextPage(done: done)
     }
-
 
     //load data
     func loadData() {
-        self.loadDataPage(0, start: { [unowned self] in
-            self.showLoading()
-        }) { [unowned self] in
-            self.pagingScrollView.reloadContent()
+        showLoading()
+        loadFirstPage { [unowned self] in
+            self.tableView.reloadData()
             self.hideLoading()
         }
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    @IBAction func refreshButtonDidTapped(_ sender: AnyObject) {
+        loadData()
+    }
     
     /**
      Implements to display data
      */
+    //////////////////////////////////////////////////////////////////////////////////////
+    
     // MARK: - Table
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 1
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         /**
          get list data from dataSource via pages property
          */
         return self.dataSource.allObjects.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let model = objectAtIndex(indexPath.row)
+        let model = pageObjectAtIndex(indexPath.row)
         
-        let url = NSURL(string: model["avatar_url"] as! String)
+        let url = URL(string: model["avatar_url"] as! String)
         let imageView = cell.viewWithTag(1) as? UIImageView
-        imageView?.sd_setImageWithURL(url)
+        imageView?.sd_setImage(with: url)
         
         let titleLabel = cell.viewWithTag(2) as? UILabel
         titleLabel?.text = model["login"] as? String

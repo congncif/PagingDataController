@@ -1,17 +1,17 @@
 PODS:
-  - Alamofire (3.4.1)
-  - PagingDataController (0.2.1):
-    - SVPullToRefresh (~> 0.4)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
-  - SiFUtilities (0.3.1)
+  - Alamofire (4.0.0)
+  - PagingDataController (1.0.0):
+    - SVPullToRefresh
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SiFUtilities (1.0.0)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4)
+  - Alamofire
   - PagingDataController (from `../`)
-  - SDWebImage (~> 3.8)
+  - SDWebImage
   - SiFUtilities
 
 EXTERNAL SOURCES:
@@ -19,12 +19,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  PagingDataController: 3a03811f5716c8102c5130f36fa8c233ce99cc1f
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
-  SiFUtilities: d4ed0a8244782253f025db0cf1c7096973a04542
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  PagingDataController: e154348095addff09241302bf9881fc595794eb0
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SiFUtilities: b8b65b0ed0aeffd45a01f30006f6a2ed45fba5ff
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: df5c2bf7887770a0bd1d06e296d7ac9e948d694f
+PODFILE CHECKSUM: 04b1ced882537d2158c050aa60749959928c99da
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2
