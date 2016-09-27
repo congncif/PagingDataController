@@ -137,11 +137,9 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 /**
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 */
-- (void)setupDefaultForPaging;
-- (void)setupPullToRefreshView;
-- (void)setupInfiniteScrollingView;
-- (void)onPullDownWithDone:(void (^ _Nullable)(void))done;
-- (void)onPullUpWithDone:(void (^ _Nullable)(void))done;
+- (void)setupDefaultForPagingWithPullDownHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullDownHandler pullUpHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullUpHandler;
+- (void)setupPullToRefreshViewWithPullHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullHandler;
+- (void)setupInfiniteScrollingViewWithPullHanlder:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullHanlder;
 /**
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 */
