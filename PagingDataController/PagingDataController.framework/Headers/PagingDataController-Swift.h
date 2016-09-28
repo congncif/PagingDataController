@@ -137,13 +137,13 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 /**
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 */
-- (void)setupDefaultForPagingWithPullDownHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullDownHandler pullUpHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullUpHandler;
+- (void)setupScrollViewForPagingWithPullDownHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullDownHandler pullUpHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullUpHandler;
 - (void)setupPullToRefreshViewWithPullHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullHandler;
 - (void)setupInfiniteScrollingViewWithPullHanlder:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullHanlder;
 /**
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 */
-- (void)pageDataSourceDidChanged:(BOOL)moreChanged hasMore:(BOOL)hasMore;
+- (void)pageDataSourceDidChangedWithHasMoreFlag:(BOOL)hasMoreFlag changed:(BOOL)changed;
 - (void)checkInfiniteView:(BOOL)hasMore;
 @end
 
