@@ -130,21 +130,4 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 - (void)reloadContentWithInstantReloadContent:(BOOL)flag end:(void (^ _Nullable)(void))end;
 @end
 
-
-@interface UIViewController (SWIFT_EXTENSION(PagingDataController))
-@property (nonatomic, readonly) BOOL instantReloadContent;
-@property (nonatomic, readonly, strong) UIScrollView * _Nonnull pagingScrollView;
-/**
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
-- (void)setupScrollViewForPagingWithPullDownHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullDownHandler pullUpHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullUpHandler;
-- (void)setupPullToRefreshViewWithPullHandler:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullHandler;
-- (void)setupInfiniteScrollingViewWithPullHanlder:(void (^ _Nonnull)(void (^ _Nullable)(void)))pullHanlder;
-/**
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
-- (void)pageDataSourceDidChangedWithHasMoreFlag:(BOOL)hasMoreFlag changed:(BOOL)changed;
-- (void)checkInfiniteView:(BOOL)hasMore;
-@end
-
 #pragma clang diagnostic pop

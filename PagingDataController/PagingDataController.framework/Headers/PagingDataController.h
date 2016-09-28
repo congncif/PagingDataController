@@ -2,12 +2,12 @@
 //  PagingDataController.h
 //  PagingDataController
 //
-//  Created by FOLY on 5/30/16.
+//  Created by FOLY on 9/29/16.
 //  Copyright © 2016 [iF] Solution. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-//swift 3: 1.1.1
+//v1.1.2
 //! Project version number for PagingDataController.
 FOUNDATION_EXPORT double PagingDataControllerVersionNumber;
 
