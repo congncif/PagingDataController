@@ -45,7 +45,7 @@ struct GithubUsersProvider: PagingProviderProtocol {
     
     
     /*******************************************************************************************************
-     * Replace type of Parameters and Return model to custom type in your app
+     * Replace type of Parameters and Return model by custom type in your app
      * Example:
      * func loadData(_ parameters: <#ParamterType#>?, page: Int, completion: (([<#ReturnType#>], Error?) -> ())?)
      *******************************************************************************************************/
