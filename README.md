@@ -34,7 +34,7 @@ PagingDataController is available under the MIT license. See the LICENSE file fo
 
 ### Getting started
 
-1. **Provider**: provider is a controller, it will retrieve data by page number
+##### **Provider**: provider is a controller, it will retrieve data by page number
   * Creating a provider.
   * Implement ```loadData``` method
 ```swift
@@ -69,7 +69,7 @@ struct GithubUsersProvider: PagingProviderProtocol {
     }
 }
 ```
-2. Implement view controller conform `PagingControllerProtocol` protocol
+##### Implement view controller conform `PagingControllerProtocol` protocol
 
 ```swift
 class GithubUsersViewController: UIViewController , PagingControllerProtocol {
