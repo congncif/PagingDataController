@@ -139,7 +139,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 @class UIViewController;
 
 @interface UIApplication (SWIFT_EXTENSION(SiFUtilities))
-+ (UIViewController * _Nullable)topViewController:(UIViewController * _Nullable)base;
++ (UIViewController * _Nullable)topViewControllerWithBase:(UIViewController * _Nullable)base;
 @end
 
 
@@ -152,7 +152,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 
 
 @interface UIImage (SWIFT_EXTENSION(SiFUtilities))
-+ (UIImage * _Nonnull)imageWithColor:(UIColor * _Nonnull)color;
++ (UIImage * _Nullable)imageWithColor:(UIColor * _Nonnull)color;
++ (UIImage * _Nullable)imageWithColor:(UIColor * _Nonnull)color size:(CGSize)size;
 @end
 
 
@@ -170,6 +171,13 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 
 @interface UIView (SWIFT_EXTENSION(SiFUtilities))
 - (UIImage * _Nullable)takeScreenshot;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(SiFUtilities))
+@property (nonatomic) NSInteger loadingCount;
+- (void)showLoadingWithBlurBackground:(BOOL)blurBackground customIndicator:(UIView * _Nullable)customIndicator animated:(BOOL)animated;
+- (void)hideLoadingWithAnimated:(BOOL)animated;
 @end
 
 
@@ -197,7 +205,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 
 
 @interface UIViewController (SWIFT_EXTENSION(SiFUtilities))
-@property (nonatomic) NSInteger loadingCount;
 @property (nonatomic) BOOL layoutDidFinished;
 @property (nonatomic) BOOL blurLoading;
 @property (nonatomic) UIStatusBarStyle statusBarStyle;

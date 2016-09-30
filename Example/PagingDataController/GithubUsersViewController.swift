@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import PagingDataController
 import SiFUtilities
+import PagingDataController
+import PagingDataControllerExtension
 import SDWebImage
 
 class GithubUsersViewController: UIViewController , PagingControllerProtocol {
     @IBOutlet weak var tableView: UITableView!
-    
-    //////////////////////////////////////////////////////////////////////////////////////
     
     //Provider definition
     lazy var provider = GithubUsersProvider()
@@ -22,45 +21,29 @@ class GithubUsersViewController: UIViewController , PagingControllerProtocol {
     //setup default
     override func viewDidFinishLayout() {
         super.viewDidFinishLayout()
-        
-        setupDefaultForPaging()
-        dataSource.delegate = self
-
-        loadData()
+        setupForPaging()
     }
     
-    override func onPullDown(done: (() -> ())?) {
-        loadFirstPage(done: done)
-    }
     
-    override func onPullUp(done: (() -> ())?) {
-        loadNextPage(done: done)
-    }
-
-    //load data
-    func loadData() {
-        showLoading()
-        loadFirstPage { [unowned self] in
-            self.tableView.reloadData()
-            self.hideLoading()
-        }
-    }
     
+    // MARK: - Actions
     //////////////////////////////////////////////////////////////////////////////////////
-    
     @IBAction func refreshButtonDidTapped(_ sender: AnyObject) {
-        loadData()
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        loadDataAtFirst()
     }
     
-    /**
+    
+    
+    /****************************
      Implements to display data
-     */
-    //////////////////////////////////////////////////////////////////////////////////////
+     ****************************/
     
     // MARK: - Table
+    //////////////////////////////////////////////////////////////////////////////////////
+    
     func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 1
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +71,5 @@ class GithubUsersViewController: UIViewController , PagingControllerProtocol {
         
         return cell
     }
-
 
 }
