@@ -19,6 +19,9 @@ class GithubUsersViewController: UIViewController , PagingControllerProtocol {
     lazy var provider = GithubUsersProvider()
     
     //setup default
+    /******************************************
+     Copy this method into your view controller
+    ******************************************/
     override func viewDidFinishLayout() {
         super.viewDidFinishLayout()
         setupForPaging()
@@ -36,7 +39,7 @@ class GithubUsersViewController: UIViewController , PagingControllerProtocol {
     
     
     /****************************
-     Implements to display data
+     Implement to display data
      ****************************/
     
     // MARK: - Table

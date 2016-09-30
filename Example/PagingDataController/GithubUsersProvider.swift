@@ -12,7 +12,15 @@ import Alamofire
 
 struct GithubUsersProvider: PagingProviderProtocol {
     
+    //custom pageSize here
     var pageSize: Int = 36
+    
+    
+    /*******************************************************************************************************
+     * Replace type of Parameters and Return model to custom type in your app
+     * Example:
+     * func loadData(_ parameters: <#ParamterType#>?, page: Int, completion: (([<#ReturnType#>], Error?) -> ())?)
+     *******************************************************************************************************/
     
     func loadData(_ parameters: AnyObject?, page: Int, completion: (([Dictionary<String, AnyObject>], Error?) -> ())?) {
         
