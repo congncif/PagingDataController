@@ -81,11 +81,11 @@ class GithubUsersViewController: UIViewController , PagingControllerProtocol {
 ```swift
     lazy var provider = GithubUsersProvider()
 ```
-  * Setup for paging data. All you have to do is copying the blow method to your view controller.
+  * Setup for paging data. All you have to do is copying the below method into your view controller.
 ```swift
-    /****************************************
-     Copy this method to your view controller
-    ****************************************/
+    /******************************************
+     Copy this method into your view controller
+    ******************************************/
     override func viewDidFinishLayout() {
         super.viewDidFinishLayout()
         setupForPaging()
