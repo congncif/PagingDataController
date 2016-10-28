@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//v1.1.4
+//v1.1.5
 //! Project version number for PagingDataController.
 FOUNDATION_EXPORT double PagingDataControllerVersionNumber;
 
