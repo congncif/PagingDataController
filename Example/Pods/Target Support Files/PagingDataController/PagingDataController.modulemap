@@ -1,0 +1,6 @@
+framework module PagingDataController {
+  umbrella header "PagingDataController-umbrella.h"
+
+  export *
+  module * { export * }
+}

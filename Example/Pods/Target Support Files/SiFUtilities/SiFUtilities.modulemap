@@ -1,0 +1,6 @@
+framework module SiFUtilities {
+  umbrella header "SiFUtilities-umbrella.h"
+
+  export *
+  module * { export * }
+}

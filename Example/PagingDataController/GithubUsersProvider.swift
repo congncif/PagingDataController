@@ -22,7 +22,7 @@ struct GithubUsersProvider: PagingProviderProtocol {
      * func loadData(_ parameters: <#ParamterType#>?, page: Int, completion: (([<#ReturnType#>], Error?) -> ())?)
      *******************************************************************************************************/
     
-    func loadData(_ parameters: AnyObject?, page: Int, completion: (([Dictionary<String, AnyObject>], Error?) -> ())?) {
+    func loadData(parameters: AnyObject?, page: Int, completion: (([Dictionary<String, AnyObject>], Error?) -> ())?) {
         
         let apiPath = "https://api.github.com/search/users?q=apple&page=\(page+1)&per_page=\(pageSize)"
         Alamofire.request(apiPath, method: .get).responseJSON { (response) in
