@@ -13,11 +13,12 @@ public protocol Reloadable {
     func reloadContent(instantReloadContent flag: Bool, end: (() -> ())?)
 }
 
-extension UIScrollView: Reloadable {
-    open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
-        fatalError("Please implement \(#function) to reload content of scrollview")
+extension Reloadable {
+    public func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
     }
-    
+}
+
+extension UIScrollView: Reloadable {
     func reload(_ reloadBlock: (() -> ()), instantReloadContent flag: Bool = false, end: (() -> ())? = nil ) {
         if flag {
             reloadBlock()
@@ -30,7 +31,7 @@ extension UIScrollView: Reloadable {
 }
 
 extension UITableView {
-    open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
+    open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         reload({ [unowned self] in
             self.reloadData()
             }, instantReloadContent: flag, end: end)
@@ -38,9 +39,10 @@ extension UITableView {
 }
 
 extension UICollectionView {
-    open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
+    open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         reload({ [unowned self] in
             self.reloadData()
             }, instantReloadContent: flag, end: end)
     }
 }
+
