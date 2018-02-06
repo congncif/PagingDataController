@@ -25,6 +25,7 @@ extension UIScrollView: Reloadable {
     }
     
     open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
+        fatalError("Must implement \(#function) to reload content")
     }
 }
 
