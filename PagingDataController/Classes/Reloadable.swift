@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol Reloadable {
+@objc public protocol Reloadable {
     func reloadContent(instantReloadContent flag: Bool, end: (() -> ())?)
 }
 
@@ -24,13 +24,13 @@ extension UIScrollView: Reloadable {
         }
     }
     
-    open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
+    @objc open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         fatalError("Must implement \(#function) to reload content")
     }
 }
 
 extension UITableView {
-    open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
+    @objc open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         reload({ [unowned self] in
             self.reloadData()
             }, instantReloadContent: flag, end: end)
@@ -38,7 +38,7 @@ extension UITableView {
 }
 
 extension UICollectionView {
-    open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
+    @objc open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         reload({ [unowned self] in
             self.reloadData()
             }, instantReloadContent: flag, end: end)
