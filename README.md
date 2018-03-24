@@ -3,14 +3,18 @@
 <img src="https://i.imgur.com/ATK9hZV.png"/>
 
 
-[![Version](https://img.shields.io/cocoapods/v/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
-[![License](https://img.shields.io/cocoapods/l/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
-[![Platform](https://img.shields.io/cocoapods/p/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
+[![Version](https://img.shields.io/cocoapods/v/PagingDataController.svg?style=flat)](http://cocoapods.org/pods/PagingDataController)
+[![License](https://img.shields.io/cocoapods/l/PagingDataController.svg?style=flat)](http://cocoapods.org/pods/PagingDataController)
+[![Platform](https://img.shields.io/cocoapods/p/PagingDataController.svg?style=flat)](http://cocoapods.org/pods/PagingDataController)
 
 
 **PagingDataController** is a library for implementing loading data by page (pagination) easily. It provides a short setup via few lines of code. You will not need to worry about page management, when to load the next page's data, and so on.
 
 **PagingDataControllerExtension** is built with `SVPullToRefresh`. So you do not have to manually add controls. But you can customize everything if you want.
+
+![Screenshot](http://i.imgur.com/PTI6vMcm.png)
+![Pull to refresh](http://i.imgur.com/thZpiCzm.png)
+![Load more data next page](http://i.imgur.com/HhAwUKTm.png)
 
 ## Requirements
 
