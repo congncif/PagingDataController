@@ -31,14 +31,6 @@ it, simply add the following line to your Podfile:
 pod "PagingDataControllerExtension"
 ```
 
-## Author
-
-NGUYEN CHI CONG, congnc.if@gmail.com
-
-## License
-
-PagingDataControllerExtension is available under the MIT license. See the LICENSE file for more info.
-
 ## How it works?
 
 <img src="https://i.imgur.com/ExwdwgR.jpg"/>
@@ -110,3 +102,11 @@ override func viewDidFinishLayout() {
 5. Build & Run to enjoy
 
 <img src="https://i.imgur.com/PFa9mJ2.png" width=375/>
+
+## Author
+
+NGUYEN CHI CONG, congnc.if@gmail.com
+
+## License
+
+PagingDataControllerExtension is available under the MIT license. See the LICENSE file for more info.
