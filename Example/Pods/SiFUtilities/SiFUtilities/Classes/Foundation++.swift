@@ -31,15 +31,16 @@ public func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 //MARK: - NSObjects
 
-public extension NSObject{
-    public class var className: String{
+extension NSObject {
+    open class var className: String {
         return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
-    public var className: String{
+    open var className: String {
         return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
     }
 }
+
 
 public protocol PropertyNames: class {
     var propertyNames: [String] {get}
@@ -58,14 +59,20 @@ public extension PropertyNames {
             
             // iterate each objc_property_t struct
             for i: UInt32 in 0 ..< count {
-                let property = properties?[Int(i)]
-                
-                // retrieve the property name by calling property_getName function
-                let cname = property_getName(property)
-                
-                // covert the c string into a Swift string
-                let name = String(cString: cname!)
-                results.append(name)
+                if let property = properties?[Int(i)] {
+                    // retrieve the property name by calling property_getName function
+                    // covert the c string into a Swift string
+                    #if swift(>=4.0)
+                        let cname = property_getName(property)
+                        let name = String(cString: cname)
+                        results.append(name)
+                    #else
+                        if let cname = property_getName(property) {
+                            let name = String(cString: cname)
+                            results.append(name)
+                        }
+                    #endif
+                }
             }
             
             // release objc_property_t structs
@@ -80,47 +87,8 @@ public extension PropertyNames {
 
 extension NSObject: PropertyNames {}
 
-//MARK: - Sequence
-//////////////////////////////////////////////////////////////////////////////////////
 
-public extension Array {
-    
-    public mutating func shuffle() {
-        for _ in 0..<self.count {
-            sort { (_,_) in arc4random() < arc4random() }
-        }
-    }
-}
-
-public extension Sequence {
-    
-    /// Categorises elements of self into a dictionary, with the keys given by keyFunc
-    
-    func categorise<U : Hashable>(_ keyFunc: (Iterator.Element) -> U) -> [U:[Iterator.Element]] {
-        var dict: [U:[Iterator.Element]] = [:]
-        for el in self {
-            let key = keyFunc(el)
-            if case nil = dict[key]?.append(el) { dict[key] = [el] }
-        }
-        return dict
-    }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-public extension Date {
-    public func toString(format: String? = "dd-MM-yyyy", timeZone: TimeZone = TimeZone(secondsFromGMT: 0)!) -> String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = timeZone
-        let internalFormat = format
-        dateFormatter.dateFormat = internalFormat
-        
-        return dateFormatter.string(from: self)
-    }
-}
-
-public extension URL {
+extension URL {
     public var keyValueParameters: Dictionary<String, String>? {
         var results = [String:String]()
         let keyValues = self.query?.components(separatedBy: "&")

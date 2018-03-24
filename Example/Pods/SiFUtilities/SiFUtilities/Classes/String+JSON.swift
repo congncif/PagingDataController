@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension String {
+extension String {
     public init?(dictionary: [String: Any]) {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)

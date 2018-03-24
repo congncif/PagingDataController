@@ -14,6 +14,7 @@ extension UIView {
     fileprivate struct AssociatedKeys {
         static var LoadingCount = 0
     }
+    
     public var loadingCount: Int {
         get {
             let number = objc_getAssociatedObject(self, &AssociatedKeys.LoadingCount) as? NSNumber
@@ -31,25 +32,19 @@ extension UIView {
         }
     }
     
-    open func showLoading(blurBackground: Bool = false, customIndicator: UIView? = nil, animated: Bool = true) {
-        
+    @objc open func showLoading(overlayView: UIView = UIView(),
+                          customIndicator: UIView? = nil,
+                          animated: Bool = true) {
         var blurView = self.viewWithTag(LoadingTag)
-        
         if blurView == nil {
-            
-            if blurBackground {
-                let blur = UIBlurEffect(style: UIBlurEffectStyle.dark)
-                blurView = UIVisualEffectView(effect: blur)
-            }else {
-                blurView = UIView()
-            }
+            blurView = overlayView
             
             blurView?.tag = LoadingTag
             blurView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
             var customView: UIView
             if customIndicator == nil {
-                let loadingView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+                let loadingView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
                 loadingView.startAnimating()
                 
                 customView = loadingView
@@ -64,11 +59,27 @@ extension UIView {
             blurView?.addSubview(customView)
             
             if animated {
-                blurView?.alpha = 0
-                self.addSubview(blurView!)
-                UIView.animate(withDuration: 0.25, animations: {
-                    blurView?.alpha = 1
+                if let blur = blurView as? UIVisualEffectView {
+                    
+                    customView.alpha = 0
+                    UIView.animate(withDuration: 0.25, animations: {
+                        customView.alpha = 1
                     }, completion: nil)
+                    
+                    let eff = blur.effect
+                    blur.effect = nil
+                    self.addSubview(blur)
+                    UIView.animate(withDuration: 0.25, animations: {
+                        blur.effect = eff
+                    }, completion: nil)
+                    
+                } else {
+                    blurView?.alpha = 0
+                    self.addSubview(blurView!)
+                    UIView.animate(withDuration: 0.25, animations: {
+                        blurView?.alpha = 1
+                    }, completion: nil)
+                }
             }else {
                 self.addSubview(blurView!)
             }
@@ -79,18 +90,24 @@ extension UIView {
         self.loadingCount = count + 1
     }
     
-    
-    open func hideLoading(animated: Bool = true) {
+    @objc open func hideLoading(animated: Bool = true) {
         self.loadingCount = loadingCount - 1
         if loadingCount <= 0 {
             let loadingView = self.viewWithTag(LoadingTag)
-            
             if animated {
-                UIView.animate(withDuration: 0.25, animations: {
-                    loadingView?.alpha = 0
+                if let blur = loadingView as? UIVisualEffectView {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        blur.effect = nil
                     }, completion: { (_) in
                         loadingView?.removeFromSuperview()
-                })
+                    })
+                } else {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        loadingView?.alpha = 0
+                    }, completion: { (_) in
+                        loadingView?.removeFromSuperview()
+                    })
+                }
             }else {
                 loadingView?.removeFromSuperview()
             }

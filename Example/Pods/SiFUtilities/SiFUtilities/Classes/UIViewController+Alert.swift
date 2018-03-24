@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-public extension UIViewController {
-    public func confirm(title: String? = nil,
+extension UIViewController {
+    open func confirm(title: String? = nil,
                         message: String? = nil,
                         cancelTitle: String = LocalizedString("Cancel"),
                         cancelHandler: @escaping ()->Void = {},
@@ -27,7 +27,7 @@ public extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    public func notify(title: String? = nil,
+    open func notify(title: String? = nil,
                        message: String? = nil,
                        buttonTitle: String = LocalizedString("OK"),
                        handler: @escaping ()->Void = {}) {

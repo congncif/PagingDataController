@@ -11,3 +11,9 @@ import Foundation
 public func LocalizedString(_ string: String, tableName: String? = nil) -> String {
     return NSLocalizedString(string, tableName: tableName, comment: string)
 }
+
+extension String {
+    public var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+}

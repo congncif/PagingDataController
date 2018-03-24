@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension UIImage {
+extension UIImage {
     public func compress(ratio: CGFloat, minLength: CGFloat = 100) -> UIImage? {
         let size = self.size
         let widthRatio = minLength/size.width
@@ -30,6 +30,6 @@ public extension UIImage {
         let compressSize = CGSize(width: size.width * ratio, height: size.height * ratio)
         let imageView = UIImageView(frame: CGRect(origin: CGPoint.zero, size: compressSize))
         imageView.image = self
-        return imageView.takeScreenshot()
+        return imageView.takeImage()
     }
 }

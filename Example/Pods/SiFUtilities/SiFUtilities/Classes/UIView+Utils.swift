@@ -10,16 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    public func animate(duration: CFTimeInterval = 0.35, transitionType: String = kCATransitionFade, direction: String = kCATransitionFromLeft) {
-        let transition = CATransition()
-        transition.duration = duration
-        transition.type = transitionType
-        transition.subtype = direction
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        self.layer.add(transition, forKey: "animation")
-    }
-    
-    public func takeScreenshot() -> UIImage? {
+    open func takeImage() -> UIImage? {
         UIGraphicsBeginImageContext(self.bounds.size)
         self.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()

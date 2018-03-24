@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    public func addPlaceholderStatusView(height: CGFloat = UIApplication.shared.statusBarFrame.size.height) {
+    open func addPlaceholderStatusView(height: CGFloat = UIApplication.shared.statusBarFrame.size.height) {
         
         let placeholderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: height))
         placeholderView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,11 +30,11 @@ extension UIViewController {
     }
     
     // MARK: - Loading
-    open func showLoading() {
+    @objc open func showLoading() {
         self.view.showLoading()
     }
     
-    open func hideLoading() {
+    @objc open func hideLoading() {
         self.view.hideLoading()
     }
 }

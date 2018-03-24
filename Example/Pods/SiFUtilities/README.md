@@ -19,6 +19,8 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "SiFUtilities"
 ```
+Migrated to Swift 4__
+Swift 3 -> use version 2.1.5__
 
 ## Author
 

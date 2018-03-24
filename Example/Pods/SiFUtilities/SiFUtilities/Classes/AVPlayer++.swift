@@ -9,8 +9,8 @@
 import Foundation
 import AVFoundation
 
-public extension AVPlayer {
-    public func takeScreenshot() -> UIImage? {
+extension AVPlayer {
+    open func takeImage() -> UIImage? {
         
         let currentItem = self.currentItem
         guard currentItem != nil else {

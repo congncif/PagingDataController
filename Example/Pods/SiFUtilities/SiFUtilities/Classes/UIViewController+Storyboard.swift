@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-enum StoryboardName: String {
-    case main = "Main"
-}
-
-public extension UIStoryboard {
-    public var main: UIStoryboard {
-        return UIStoryboard(name: StoryboardName.main.rawValue, bundle: nil)
+extension UIStoryboard {
+    struct Name {
+        static let main = "Main"
+    }
+    
+    open var main: UIStoryboard {
+        return UIStoryboard(name: Name.main, bundle: nil)
     }
     
     public convenience init(name: String) {
@@ -23,8 +23,7 @@ public extension UIStoryboard {
     }
 }
 
-public extension UIViewController {
-    
+extension UIViewController {
     fileprivate class func instantiateFromStoryboardHelper<T>(storyboardName: String,
                                                            storyboardId: String) -> T {
         let storyboard = UIStoryboard(name: storyboardName)
@@ -38,45 +37,45 @@ public extension UIViewController {
         return controller
     }
     
-    public class func instantiateFromStoryboard(name: String,
+    open class func instantiateFromStoryboard(name: String,
                                                 identifier: String) -> Self {
         return instantiateFromStoryboardHelper(storyboardName: name , storyboardId: identifier)
     }
     
-    public class func instantiateFromStoryboard(name: String) -> Self {
+    open class func instantiateFromStoryboard(name: String) -> Self {
         let identifier = className
         return instantiateFromStoryboardHelper(storyboardName: name , storyboardId: identifier)
     }
     
-    public class func instantiateFromStoryboard() -> Self {
+    open class func instantiateFromStoryboard() -> Self {
         let name = className
         let identifier = className
         return instantiateFromStoryboardHelper(storyboardName: name , storyboardId: identifier)
     }
     
-    public class func instantiateFromMainStoryboard(identifier: String) -> Self {
-        return instantiateFromStoryboard(name: StoryboardName.main.rawValue, identifier: identifier)
+    open class func instantiateFromMainStoryboard(identifier: String) -> Self {
+        return instantiateFromStoryboard(name: UIStoryboard.Name.main, identifier: identifier)
     }
     
-    public class func instantiateFromMainStoryboard() -> Self {
+    open class func instantiateFromMainStoryboard() -> Self {
         let identifier = className
-        return instantiateFromStoryboard(name: StoryboardName.main.rawValue, identifier: identifier)
+        return instantiateFromStoryboard(name: UIStoryboard.Name.main, identifier: identifier)
     }
     
-    public class func instantiateInitialFromStoryboard(name: String) -> Self {
+    open class func instantiateInitialFromStoryboard(name: String) -> Self {
         return instantiateFromStoryboardHelper(storyboardName: name)
     }
     
-    public class func instantiateInitialFromStoryboard() -> Self {
+    open class func instantiateInitialFromStoryboard() -> Self {
         let name = className
         return instantiateFromStoryboardHelper(storyboardName: name)
     }
     
-    public func navigationContainer<U: UINavigationController>() -> U? {
+    open func navigationContainer<U: UINavigationController>() -> U? {
         return self.navigationController as? U
     }
     
-    public func tabBarContainer<U: UITabBarController>() -> U? {
+    open func tabBarContainer<U: UITabBarController>() -> U? {
         return self.tabBarController as? U
     }
     
@@ -87,7 +86,7 @@ public extension UIViewController {
      
      - returns: instance of this class
      */
-    public class func instantiateViewController(storyboardPath: String) -> Self {
+    open class func instantiateViewController(storyboardPath: String) -> Self {
         let components = (storyboardPath as NSString).components(separatedBy: ".")
         
         guard components.count > 0 && components.count < 3 else { return self.init() }

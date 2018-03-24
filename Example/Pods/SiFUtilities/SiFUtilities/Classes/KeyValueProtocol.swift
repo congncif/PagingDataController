@@ -8,7 +8,41 @@
 
 import Foundation
 
-public protocol KeyValueProtocol {}
+public protocol KeyValueProtocol {
+    var mapKeys: [String: String] {get}
+    var ignoreKeys: [String] {get}
+}
+
+extension KeyValueProtocol {
+    public var mapKeys: [String: String] {
+        return [:]
+    }
+    
+    public var ignoreKeys: [String] {
+        return []
+    }
+    
+    public func mapKey(for key: String) -> String {
+        var newKey = key
+        if let mapKey = mapKeys[key] {
+            newKey = mapKey
+        }
+        return newKey
+    }
+}
+
+func wrap(any: Any) -> Any? {
+    let mi = Mirror(reflecting: any)
+    if let style = mi.displayStyle {
+        if style != .optional {
+            return any
+        }
+        if mi.children.count == 0 { return nil }
+        let (_, some) = mi.children.first!
+        return some
+    }
+    return any
+}
 
 public extension KeyValueProtocol {
     public var dictionary: [String: Any] {
@@ -17,17 +51,11 @@ public extension KeyValueProtocol {
         
         for child in otherSelf.children {
             if let key = child.label {
-                if let value = child.value as? KeyValueProtocol {
-                    dict[key] = value.dictionary
+                if ignoreKeys.contains(key) {
+                    continue
                 }
-                else if let values = child.value as? [KeyValueProtocol] {
-                    dict[key] = values.map({ (item) -> [String: Any] in
-                        return item.dictionary
-                    })
-                }
-                else {
-                    dict[key] = child.value
-                }
+                let newKey = mapKey(for: key)
+                dict[newKey] = parse(value: child.value)
             }
         }
         
@@ -36,17 +64,11 @@ public extension KeyValueProtocol {
         while let superMirror = mirror.superclassMirror {
             for child in superMirror.children {
                 if let key = child.label {
-                    if let value = child.value as? KeyValueProtocol {
-                        dict[key] = value.dictionary
+                    if ignoreKeys.contains(key) {
+                        continue
                     }
-                    else if let values = child.value as? [KeyValueProtocol] {
-                        dict[key] = values.map({ (item) -> [String: Any] in
-                            return item.dictionary
-                        })
-                    }
-                    else {
-                        dict[key] = child.value
-                    }
+                    let newKey = mapKey(for: key)
+                    dict[newKey] = parse(value: child.value)
                 }
             }
             mirror = superMirror
@@ -55,9 +77,27 @@ public extension KeyValueProtocol {
         return dict
     }
     
+    func parse(value: Any) -> Any? {
+        
+        let wrappedValue = wrap(any: value)
+        
+        if let object = wrappedValue as? KeyValueProtocol {
+            return object.dictionary
+        }
+        else if let values = wrappedValue as? [KeyValueProtocol] {
+            return values.map({ (item) -> [String: Any] in
+                return item.dictionary
+            })
+        }
+        else {
+            return wrappedValue
+        }
+    }
+    
     public var JSONString: String? {
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: dictionary,
+                                                      options: .prettyPrinted)
             return String(data: jsonData, encoding: String.Encoding.utf8)
         } catch {
             print(error.localizedDescription)
@@ -71,7 +111,8 @@ public extension KeyValueProtocol {
         
         for child in otherSelf.children {
             if let key = child.label {
-                results.append(key)
+                let newKey = mapKey(for: key)
+                results.append(newKey)
             }
         }
         
@@ -80,7 +121,8 @@ public extension KeyValueProtocol {
         while let superMirror = mirror.superclassMirror {
             for child in superMirror.children {
                 if let key = child.label {
-                    results.append(key)
+                    let newKey = mapKey(for: key)
+                    results.append(newKey)
                 }
             }
             mirror = superMirror

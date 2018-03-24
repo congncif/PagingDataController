@@ -10,7 +10,7 @@ import Foundation
 
 public protocol AssociatedObject {}
 
-public extension AssociatedObject {
+extension AssociatedObject {
     public func getAssociatedObject<T>(key: inout UInt8) -> T? {
         return objc_getAssociatedObject(self, &key) as? T
     }

@@ -28,8 +28,7 @@ extension UIApplication {
 }
 
 //MARK: - UIColor
-public extension UIColor {
-    
+extension UIColor {
     public convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
@@ -38,8 +37,7 @@ public extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: a/100)
     }
     
-    public class func random(alpha:CGFloat = 1) -> UIColor {
-        
+    open class func random(alpha:CGFloat = 1) -> UIColor {
         let randomRed: CGFloat = CGFloat(drand48())
         let randomGreen: CGFloat = CGFloat(drand48())
         let randomBlue: CGFloat = CGFloat(drand48())
@@ -51,12 +49,8 @@ public extension UIColor {
 
 //MARK: - UIImage
 
-public extension UIImage {
-    public class func imageWithColor(_ color: UIColor) -> UIImage? {
-        return imageWithColor(color, size: CGSize(width: 1, height: 1))
-    }
-    
-    public class func imageWithColor(_ color: UIColor, size: CGSize) -> UIImage? {
+extension UIImage {
+    open class func image(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()

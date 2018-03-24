@@ -7,56 +7,65 @@
 //
 
 import UIKit
-import SiFUtilities
 import PagingDataController
 import PagingDataControllerExtension
 import SDWebImage
+import SiFUtilities
 
-class GithubUsersViewController: UIViewController , PagingControllerProtocol {
-    @IBOutlet weak var tableView: UITableView!
+class GithubUsersViewController: UIViewController, UITableViewDataSource, PagingControllerProtocol {
+    @IBOutlet var tableView: UITableView!
     
-    //Provider definition
+    // Provider definition
     lazy var provider = GithubUsersProvider()
     
-    //setup default
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // setup default
     /******************************************
      Copy this method into your view controller
-    ******************************************/
+     ******************************************/
     override func viewDidFinishLayout() {
         super.viewDidFinishLayout()
-        setupForPaging()
+        setupForPaging(nativeRefreshControl: true)
     }
     
+    // MARK: - Custom
     
+    func parametersForPage(_ page: Int) -> AnyObject? {
+        return nil
+    }
+    
+    func errorWarningForPage(_ page: Int, error: Error) {
+        print(error)
+    }
     
     // MARK: - Actions
+    
     //////////////////////////////////////////////////////////////////////////////////////
     @IBAction func refreshButtonDidTapped(_ sender: AnyObject) {
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-        loadDataAtFirst()
+        self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        loadDataFirstPage()
     }
-    
-    
     
     /****************************
      Implement to display data
      ****************************/
     
     // MARK: - Table
+    
     //////////////////////////////////////////////////////////////////////////////////////
     
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /**
-         get list data from dataSource via pages property
-         */
         return self.dataSource.allObjects.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let model = pageObjectAtIndex(indexPath.row)
@@ -74,5 +83,5 @@ class GithubUsersViewController: UIViewController , PagingControllerProtocol {
         
         return cell
     }
-
 }
+

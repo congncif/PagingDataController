@@ -9,15 +9,15 @@
 import Foundation
 
 open class CommonError: Error {
-    public var title: String?
-    public var message: String?
+    open var title: String?
+    open var message: String?
     
     public init(title: String? = nil, message: String? = nil) {
         self.title = title
         self.message = message
     }
     
-    public var localizedDescription: String {
+    open var localizedDescription: String {
         return self.message ?? "Unkown error"
     }
 }
