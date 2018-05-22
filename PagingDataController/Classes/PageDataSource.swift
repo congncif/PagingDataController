@@ -37,6 +37,7 @@ open class PageDataSource<T> {
     
     open var settings: PageDataSettings = PageDataSettings()
     open var hasMore: Bool = false
+    
     open var allObjects: [T] {
         return getAllObjects()
     }
@@ -74,17 +75,23 @@ open class PageDataSource<T> {
     //////////////////////////////////////////////////////////////////////////////////////
     
     open func extendDataSource(_ page: PageData<T>) {
-        
         if !pageIsExists(page.pageIndex) {
             data.append(page)
             onExtend(pageData: page.pageData, at: page.pageIndex)
             
             var changed = false
             if page.pageData.count < settings.pageSize {
-                changed = (hasMore == true) // near last page
-                hasMore = false
+                let newFlag = false
+                if hasMore != newFlag {
+                    hasMore = newFlag
+                    changed = true
+                }
             } else {
-                hasMore = true
+                let newFlag = true
+                if hasMore != newFlag {
+                    hasMore = newFlag
+                    changed = true
+                }
             }
             
             delegate?.pageDataSourceDidChanged(hasNextPage: hasMore, infiniteScrollingShouldChange: changed)
