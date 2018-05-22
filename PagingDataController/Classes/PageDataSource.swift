@@ -18,14 +18,14 @@ public struct PageDataSettings {
 }
 
 public protocol PageDataSourceDelegate: class {
-    func pageDataSourceDidChanged(hasMoreFlag: Bool, changed: Bool)
+    func pageDataSourceDidChanged(hasNextPage: Bool, infiniteScrollingShouldChange shouldChange: Bool)
 }
 
 open class PageData<T> {
     open var pageIndex: Int
     open var pageData: [T]
     
-    public init(index pageIndex: Int, data pageData:[T]) {
+    public init(index pageIndex: Int, data pageData: [T]) {
         self.pageIndex = pageIndex
         self.pageData = pageData
     }
@@ -36,39 +36,35 @@ open class PageDataSource<T> {
     open weak var delegate: PageDataSourceDelegate?
     
     open var settings: PageDataSettings = PageDataSettings()
-    open var hasMore: Bool = true
+    open var hasMore: Bool = false
     open var allObjects: [T] {
-        get {
-            return getAllObjects()
-        }
+        return getAllObjects()
     }
     
     public var data: [PageData<T>] = [PageData<T>]()
     open var currentPage: Int {
-        get {
-            let page = data.last
-            guard page != nil else { return -1 }
-            return page!.pageIndex
-        }
+        let page = data.last
+        guard page != nil else { return -1 }
+        return page!.pageIndex
     }
-//    private(set) var pages: [T]
+    //    private(set) var pages: [T]
     
-    public init () {
-        self.settings = PageDataSettings()
+    public init() {
+        settings = PageDataSettings()
     }
     
-    public convenience init (pageSettings: PageDataSettings) {
+    public convenience init(pageSettings: PageDataSettings) {
         self.init()
-        self.settings = pageSettings
+        settings = pageSettings
     }
     
-    public convenience init (pageSize: Int) {
+    public convenience init(pageSize: Int) {
         self.init()
-        self.settings = PageDataSettings(pageSize: pageSize)
+        settings = PageDataSettings(pageSize: pageSize)
     }
     
     fileprivate func getAllObjects() -> [T] {
-        var source:[T] = [T]()
+        var source: [T] = [T]()
         for page in data {
             source += page.pageData
         }
@@ -85,13 +81,15 @@ open class PageDataSource<T> {
             
             var changed = false
             if page.pageData.count < settings.pageSize {
-                changed = (hasMore == true)
+                changed = (hasMore == true) // near last page
                 hasMore = false
+            } else {
+                hasMore = true
             }
             
-            delegate?.pageDataSourceDidChanged(hasMoreFlag: hasMore, changed: changed)
-        }else {
-            print("Page \(page.pageIndex) is exists");
+            delegate?.pageDataSourceDidChanged(hasNextPage: hasMore, infiniteScrollingShouldChange: changed)
+        } else {
+            print("Page \(page.pageIndex) is exists")
         }
     }
     
@@ -99,9 +97,9 @@ open class PageDataSource<T> {
         data.removeAll()
         onReset()
         
-        let changed = (hasMore == false)
-        hasMore = true
-        delegate?.pageDataSourceDidChanged(hasMoreFlag: hasMore, changed: changed)
+        //        let changed = (hasMore == false) // at last page
+        hasMore = false
+        delegate?.pageDataSourceDidChanged(hasNextPage: hasMore, infiniteScrollingShouldChange: true)
         
     }
     
@@ -114,7 +112,7 @@ open class PageDataSource<T> {
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////
-    open func onExtend(pageData: [T], at page: Int)  {}
+    open func onExtend(pageData: [T], at page: Int) {}
     
     open func onReset() {}
 }

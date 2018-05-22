@@ -62,7 +62,7 @@ extension UIViewController: PageDataSourceDelegate {
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    @objc open func pageDataSourceDidChanged(hasMoreFlag: Bool, changed: Bool) {
+    @objc open func pageDataSourceDidChanged(hasNextPage hasMoreFlag: Bool, infiniteScrollingShouldChange changed: Bool) {
         guard changed else {
             return
         }

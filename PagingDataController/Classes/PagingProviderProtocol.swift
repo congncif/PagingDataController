@@ -13,11 +13,12 @@ import Foundation
  *  Specify dataModel & pageSize
  *  Implement loadData method
  */
+
 public protocol PagingProviderProtocol {
     associatedtype Paramter
     associatedtype Model
-    var pageSize: Int {get}
-    func loadData(parameters: Paramter?, page: Int, completion :(([Model], Error?)->())?)
+    var pageSize: Int { get }
+    func loadData(parameters: Paramter?, page: Int, completion: @escaping ([Model], Error?) -> Void)
 }
 
 public extension PagingProviderProtocol {
@@ -33,7 +34,7 @@ public extension PagingProviderProtocol {
         }
         do {
             results = try objects.map(converter)
-        }catch {
+        } catch {
             let message = "*** Exception in covert data from \(M.self) to \(Self.Model.self)***"
             print(message)
             
@@ -44,7 +45,7 @@ public extension PagingProviderProtocol {
         return (results, nil)
     }
     
-    public func processResult<T>(result: [T]?, error: Error?, completion :(([T], Error?)->())?) {
+    public func processResult<T>(result: [T]?, error: Error?, completion: (([T], Error?) -> Void)?) {
         
         var newResult: [T]
         defer {
@@ -57,4 +58,3 @@ public extension PagingProviderProtocol {
         newResult = result
     }
 }
-
