@@ -21,7 +21,7 @@ public protocol PagingControllerProtocol: AnyObject {
 }
 
 private var sourceKey: UInt8 = 0
-public extension PagingControllerProtocol {
+extension PagingControllerProtocol {
 
     public var dataSource: PageDataSource<PagingProvider.Model> {
         get {

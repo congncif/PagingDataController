@@ -21,7 +21,7 @@ public protocol PagingProviderProtocol {
     func loadData(parameters: Paramter?, page: Int, completion: @escaping ([Model], Error?) -> Void)
 }
 
-public extension PagingProviderProtocol {
+extension PagingProviderProtocol {
     
     public var pageSize: Int {
         return PageDataSettings().pageSize
