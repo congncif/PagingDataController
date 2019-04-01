@@ -14,7 +14,7 @@ import UIKit
 }
 
 extension UIScrollView: Reloadable {
-    open func reload(_ reloadBlock: (() -> ()), instantReloadContent flag: Bool = false, end: (() -> ())? = nil ) {
+    open func reload(_ reloadBlock: () -> (), instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         if flag {
             reloadBlock()
             end?()
@@ -23,7 +23,7 @@ extension UIScrollView: Reloadable {
             reloadBlock()
         }
     }
-    
+
     @objc open func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         fatalError("Must implement \(#function) to reload content")
     }
@@ -33,7 +33,7 @@ extension UITableView {
     @objc open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         reload({ [unowned self] in
             self.reloadData()
-            }, instantReloadContent: flag, end: end)
+        }, instantReloadContent: flag, end: end)
     }
 }
 
@@ -41,7 +41,6 @@ extension UICollectionView {
     @objc open override func reloadContent(instantReloadContent flag: Bool = false, end: (() -> ())? = nil) {
         reload({ [unowned self] in
             self.reloadData()
-            }, instantReloadContent: flag, end: end)
+        }, instantReloadContent: flag, end: end)
     }
 }
-

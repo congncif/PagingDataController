@@ -9,7 +9,6 @@
 import UIKit
 
 public protocol PagingControllerProtocol: AnyObject {
-
     associatedtype PagingProvider: PagingProviderProtocol
     var provider: PagingProvider { get }
     var dataSource: PageDataSource<PagingProvider.Model> { get set }
@@ -22,19 +21,15 @@ public protocol PagingControllerProtocol: AnyObject {
 
 private var sourceKey: UInt8 = 0
 extension PagingControllerProtocol {
-
     public var dataSource: PageDataSource<PagingProvider.Model> {
         get {
             return self.associatedObject(self, key: &sourceKey) {
                 let ds = PageDataSource<PagingProvider.Model>(pageSize: self.provider.pageSize)
                 return ds
-
             } // Set the initial value of the var
         }
         set { self.associateObject(self, key: &sourceKey, value: newValue) }
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////
 
     public func loadDataPage(_ page: Int, start: (() -> Void)? = nil, done: (() -> Void)? = nil) {
         start?()
@@ -70,13 +65,12 @@ extension PagingControllerProtocol {
         print("**** Error: \(error.localizedDescription) *****")
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////
-
     public func loadFirstPageWithCompletion(_ done: (() -> Void)? = nil) {
-        loadDataPage(0, start: nil, done: done)
+        self.loadDataPage(0, start: nil, done: done)
     }
+
     public func loadNextPageWithCompletion(_ done: (() -> Void)? = nil) {
-        loadDataPage(nextPage(), start: nil, done: done)
+        self.loadDataPage(self.nextPage(), start: nil, done: done)
     }
 
     public func pageObjectAtIndex(_ index: Int) -> PagingProvider.Model {
@@ -84,7 +78,6 @@ extension PagingControllerProtocol {
     }
 
     // MARK: - ObjC runtime
-    //////////////////////////////////////////////////////////////////////////////////////
 
     fileprivate func associatedObject<ValueType: AnyObject>(
         _ base: AnyObject,
@@ -106,5 +99,4 @@ extension PagingControllerProtocol {
         objc_setAssociatedObject(base, key, value,
                                  .OBJC_ASSOCIATION_RETAIN)
     }
-
 }

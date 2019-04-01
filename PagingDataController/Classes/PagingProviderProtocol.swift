@@ -22,7 +22,6 @@ public protocol PagingProviderProtocol {
 }
 
 extension PagingProviderProtocol {
-    
     public var pageSize: Int {
         return PageDataSettings().pageSize
     }
@@ -46,7 +45,6 @@ extension PagingProviderProtocol {
     }
     
     public func processResult<T>(result: [T]?, error: Error?, completion: (([T], Error?) -> Void)?) {
-        
         var newResult: [T]
         defer {
             completion?(newResult, error)

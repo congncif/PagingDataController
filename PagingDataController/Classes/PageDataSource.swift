@@ -18,7 +18,7 @@ public struct PageDataSettings {
 }
 
 public protocol PageDataSourceDelegate: class {
-    func pageDataSourceDidChanged(hasNextPage: Bool, infiniteScrollingShouldChange shouldChange: Bool)
+    func pageDataSourceDidChange(hasNextPage: Bool, nextPageIndicatorShouldChange shouldChange: Bool)
 }
 
 open class PageData<T> {
@@ -32,7 +32,6 @@ open class PageData<T> {
 }
 
 open class PageDataSource<T> {
-    
     open weak var delegate: PageDataSourceDelegate?
     
     open var settings: PageDataSettings = PageDataSettings()
@@ -48,6 +47,7 @@ open class PageDataSource<T> {
         guard page != nil else { return -1 }
         return page!.pageIndex
     }
+    
     //    private(set) var pages: [T]
     
     public init() {
@@ -72,29 +72,27 @@ open class PageDataSource<T> {
         return source
     }
     
-    //////////////////////////////////////////////////////////////////////////////////////
-    
     open func extendDataSource(_ page: PageData<T>) {
         if !pageIsExists(page.pageIndex) {
             data.append(page)
             onExtend(pageData: page.pageData, at: page.pageIndex)
             
-            var changed = false
+            var shouldChange = false
             if page.pageData.count < settings.pageSize {
                 let newFlag = false
                 if hasMore != newFlag {
                     hasMore = newFlag
-                    changed = true
+                    shouldChange = true
                 }
             } else {
                 let newFlag = true
                 if hasMore != newFlag {
                     hasMore = newFlag
-                    changed = true
+                    shouldChange = true
                 }
             }
             
-            delegate?.pageDataSourceDidChanged(hasNextPage: hasMore, infiniteScrollingShouldChange: changed)
+            delegate?.pageDataSourceDidChange(hasNextPage: hasMore, nextPageIndicatorShouldChange: shouldChange)
         } else {
             print("Page \(page.pageIndex) is exists")
         }
@@ -106,19 +104,17 @@ open class PageDataSource<T> {
         
         //        let changed = (hasMore == false) // at last page
         hasMore = false
-        delegate?.pageDataSourceDidChanged(hasNextPage: hasMore, infiniteScrollingShouldChange: true)
-        
+        delegate?.pageDataSourceDidChange(hasNextPage: hasMore, nextPageIndicatorShouldChange: true)
     }
     
     open func pageIsExists(_ index: Int) -> Bool {
         let pages = data.filter { (pageData) -> Bool in
-            return pageData.pageIndex == index
+            pageData.pageIndex == index
         }
         
-        return pages.count > 0
+        return !pages.isEmpty
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////
     open func onExtend(pageData: [T], at page: Int) {}
     
     open func onReset() {}

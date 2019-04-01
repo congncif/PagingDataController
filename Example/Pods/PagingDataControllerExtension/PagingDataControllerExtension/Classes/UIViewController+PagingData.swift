@@ -62,8 +62,8 @@ extension UIViewController: PageDataSourceDelegate {
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    @objc open func pageDataSourceDidChanged(hasNextPage hasMoreFlag: Bool, infiniteScrollingShouldChange changed: Bool) {
-        guard changed else {
+    @objc open func pageDataSourceDidChange(hasNextPage hasMoreFlag: Bool, nextPageIndicatorShouldChange shouldChange: Bool) {
+        guard shouldChange else {
             return
         }
         let delayTime = DispatchTime.now() + Double(Int64(0.25 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
