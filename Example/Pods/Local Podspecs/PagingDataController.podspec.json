@@ -1,7 +1,8 @@
 {
   "name": "PagingDataController",
-  "version": "1.2.3",
+  "version": "1.5.0",
   "summary": "A Swift pattern to apply paging data to UIViewController",
+  "swift_version": "4.2",
   "description": "Only configure some properties & your view controller will load data by page automatically.\nMagic !!!",
   "homepage": "https://github.com/congncif/PagingDataController",
   "license": {
@@ -13,11 +14,43 @@
   },
   "source": {
     "git": "https://github.com/congncif/PagingDataController.git",
-    "tag": "1.2.3"
+    "tag": "1.5.0"
   },
   "social_media_url": "https://twitter.com/congncif",
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "PagingDataController/Classes/**/*"
+  "default_subspecs": "Default",
+  "subspecs": [
+    {
+      "name": "Default",
+      "dependencies": {
+        "PagingDataController/Core": [
+
+        ],
+        "PagingDataController/UIExtension": [
+
+        ]
+      }
+    },
+    {
+      "name": "Core",
+      "source_files": "PagingDataController/Core/**/*"
+    },
+    {
+      "name": "UIExtension",
+      "source_files": "PagingDataController/UIExtension/**/*",
+      "dependencies": {
+        "PagingDataController/Core": [
+
+        ],
+        "SiFUtilities": [
+
+        ],
+        "SVPullToRefresh": [
+
+        ]
+      }
+    }
+  ]
 }

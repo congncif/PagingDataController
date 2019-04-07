@@ -132,7 +132,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				A371447C66B13B1DFADCF485 /* [CP] Embed Pods Frameworks */,
-				B066858D2CB621242BB13698 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,7 +215,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataController_Example/Pods-PagingDataController_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PagingDataController_Example/Pods-PagingDataController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingDataControllerExtension/PagingDataControllerExtension.framework",
@@ -235,22 +234,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataController_Example/Pods-PagingDataController_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B066858D2CB621242BB13698 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataController_Example/Pods-PagingDataController_Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PagingDataController_Example/Pods-PagingDataController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

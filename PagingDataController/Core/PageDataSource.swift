@@ -92,7 +92,7 @@ open class PageDataSource<T> {
                 }
             }
             
-            delegate?.pageDataSourceDidChange(hasNextPage: hasMore, nextPageIndicatorShouldChange: shouldChange)
+            notifyToDelegate(nextPageIndicatorShouldChange: shouldChange)
         } else {
             print("Page \(page.pageIndex) is exists")
         }
@@ -104,7 +104,7 @@ open class PageDataSource<T> {
         
         //        let changed = (hasMore == false) // at last page
         hasMore = false
-        delegate?.pageDataSourceDidChange(hasNextPage: hasMore, nextPageIndicatorShouldChange: true)
+        notifyToDelegate(nextPageIndicatorShouldChange: true)
     }
     
     open func pageIsExists(_ index: Int) -> Bool {
@@ -118,4 +118,11 @@ open class PageDataSource<T> {
     open func onExtend(pageData: [T], at page: Int) {}
     
     open func onReset() {}
+    
+    private func notifyToDelegate(nextPageIndicatorShouldChange: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.delegate?.pageDataSourceDidChange(hasNextPage: self.hasMore, nextPageIndicatorShouldChange: nextPageIndicatorShouldChange)
+        }
+    }
 }

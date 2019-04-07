@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PagingDataController'
-  s.version          = '1.4.0'
+  s.version          = '1.5.0'
   s.summary          = 'A Swift pattern to apply paging data to UIViewController'
   s.swift_version    = '4.2'
 
@@ -31,8 +31,25 @@ Magic !!!
   s.social_media_url = 'https://twitter.com/congncif'
 
   s.ios.deployment_target = '8.0'
-
-  s.source_files = 'PagingDataController/Classes/**/*'
+  
+  s.default_subspec = 'Default'
+  
+  s.subspec 'Default' do |co|
+      co.dependency 'PagingDataController/Core'
+      co.dependency 'PagingDataController/UIExtension'
+  end
+  
+  s.subspec 'Core' do |co|
+      co.source_files = 'PagingDataController/Core/**/*'
+  end
+  
+  s.subspec 'UIExtension' do |co|
+      co.source_files = 'PagingDataController/UIExtension/**/*'
+      
+      co.dependency 'PagingDataController/Core'
+      co.dependency 'SiFUtilities'
+      co.dependency 'SVPullToRefresh'
+  end
   
   # s.resource_bundles = {
   #   'PagingDataController' => ['PagingDataController/Assets/*.png']

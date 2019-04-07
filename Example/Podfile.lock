@@ -1,6 +1,15 @@
 PODS:
   - Alamofire (4.7.0)
-  - PagingDataController (1.2.3)
+  - PagingDataController (1.5.0):
+    - PagingDataController/Default (= 1.5.0)
+  - PagingDataController/Core (1.5.0)
+  - PagingDataController/Default (1.5.0):
+    - PagingDataController/Core
+    - PagingDataController/UIExtension
+  - PagingDataController/UIExtension (1.5.0):
+    - PagingDataController/Core
+    - SiFUtilities
+    - SVPullToRefresh
   - PagingDataControllerExtension (1.0.1):
     - PagingDataController
     - SiFUtilities
@@ -17,13 +26,21 @@ DEPENDENCIES:
   - PagingDataControllerExtension
   - SDWebImage
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - PagingDataControllerExtension
+    - SDWebImage
+    - SiFUtilities
+    - SVPullToRefresh
+
 EXTERNAL SOURCES:
   PagingDataController:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
-  PagingDataController: 4a511c7910b11d343faf6b2705c74934634e7cea
+  PagingDataController: f25526739ba5c4d87a29bbf2fdc0ec6238649397
   PagingDataControllerExtension: 47e89f90ba068b7d9fd1176f6d0f4e56eb29f031
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SiFUtilities: 6370fb1a033d39826c92c7b3fbd090c1dd942033
@@ -31,4 +48,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 188e3dc032185df3a6ac2fb01d67dcefe7b51761
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.1

@@ -13,6 +13,7 @@ import SDWebImage
 import SiFUtilities
 
 class GithubUsersViewController: UIViewController, UITableViewDataSource, PagingControllerProtocol {
+    
     @IBOutlet var tableView: UITableView!
     
     // Provider definition
