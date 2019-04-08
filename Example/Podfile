@@ -3,7 +3,7 @@ use_frameworks!
 target 'PagingDataController_Example' do
 
 pod 'PagingDataController', :path => '../'
-pod 'PagingDataControllerExtension'
+#pod 'PagingDataControllerExtension'
 pod 'Alamofire'
 pod 'SDWebImage'
 

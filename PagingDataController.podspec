@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PagingDataController'
-  s.version          = '1.5.0'
+  s.version          = '2.0.0'
   s.summary          = 'A Swift pattern to apply paging data to UIViewController'
   s.swift_version    = '4.2'
 

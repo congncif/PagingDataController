@@ -16,7 +16,6 @@ import UIKit
 
 extension PagingControllerProtocol {
     public func setupPagingDataSource(delegate: PageDataSourceDelegate?) {
-        dataSource.settings = PageDataSettings(pageSize: provider.pageSize)
         dataSource.delegate = delegate
     }
     

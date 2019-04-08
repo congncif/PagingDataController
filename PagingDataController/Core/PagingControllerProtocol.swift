@@ -15,6 +15,7 @@ public protocol PagingControllerDelegate: AnyObject {
 
 public protocol PagingControllerProtocol: AnyObject {
     associatedtype PagingProvider: PagingProviderProtocol
+
     var provider: PagingProvider { get }
     var dataSource: PageDataSource<PagingProvider.Model> { get set }
     var delegate: PagingControllerDelegate? { get }

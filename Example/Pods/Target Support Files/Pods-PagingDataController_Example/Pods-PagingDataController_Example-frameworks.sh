@@ -155,7 +155,6 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PagingDataControllerExtension/PagingDataControllerExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SiFUtilities/SiFUtilities.framework"
@@ -163,7 +162,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PagingDataControllerExtension/PagingDataControllerExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SiFUtilities/SiFUtilities.framework"

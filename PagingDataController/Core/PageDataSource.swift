@@ -8,15 +8,6 @@
 
 import Foundation
 
-public struct PageDataSettings {
-    public var pageSize: Int = 60
-    
-    public init() {}
-    public init(pageSize: Int) {
-        self.pageSize = pageSize
-    }
-}
-
 public protocol PageDataSourceDelegate: class {
     func pageDataSourceDidChange(hasNextPage: Bool, nextPageIndicatorShouldChange shouldChange: Bool)
 }
@@ -32,17 +23,18 @@ open class PageData<T> {
 }
 
 open class PageDataSource<T> {
-    open weak var delegate: PageDataSourceDelegate?
+    private let delegateProxy = PageDataSourceDelegateProxy()
     
-    open var settings: PageDataSettings = PageDataSettings()
-    open var hasMore: Bool = false
+    public var hasMore: Bool = false
+    public var pageSize: Int
     
-    open var allObjects: [T] {
+    public var allObjects: [T] {
         return getAllObjects()
     }
     
-    public var data: [PageData<T>] = [PageData<T>]()
-    open var currentPage: Int {
+    public var data: [PageData<T>] = []
+    
+    public var currentPage: Int {
         let page = data.last
         guard page != nil else { return -1 }
         return page!.pageIndex
@@ -50,35 +42,44 @@ open class PageDataSource<T> {
     
     //    private(set) var pages: [T]
     
+    public init(pageSize: Int) {
+        self.pageSize = pageSize
+    }
+    
     public init() {
-        settings = PageDataSettings()
+        pageSize = 36
     }
     
-    public convenience init(pageSettings: PageDataSettings) {
-        self.init()
-        settings = pageSettings
-    }
-    
-    public convenience init(pageSize: Int) {
-        self.init()
-        settings = PageDataSettings(pageSize: pageSize)
-    }
-    
-    fileprivate func getAllObjects() -> [T] {
-        var source: [T] = [T]()
-        for page in data {
-            source += page.pageData
+    public var delegate: PageDataSourceDelegate? {
+        set {
+            if let value = newValue {
+                delegateProxy.removeAllObservers()
+                delegateProxy.addObserver(value)
+            } else {
+                delegateProxy.removeAllObservers()
+            }
         }
-        return source
+        
+        get {
+            return delegateProxy
+        }
+    }
+    
+    public func addDelegate(_ delegate: PageDataSourceDelegate?) {
+        delegateProxy.addObserver(delegate)
+    }
+    
+    public func removeDelegate(_ delegate: PageDataSourceDelegate?) {
+        delegateProxy.removeObserver(delegate)
     }
     
     open func extendDataSource(_ page: PageData<T>) {
         if !pageIsExists(page.pageIndex) {
             data.append(page)
-            onExtend(pageData: page.pageData, at: page.pageIndex)
+            pageDataSourceDidExtend(pageData: page.pageData, at: page.pageIndex)
             
             var shouldChange = false
-            if page.pageData.count < settings.pageSize {
+            if page.pageData.count < pageSize {
                 let newFlag = false
                 if hasMore != newFlag {
                     hasMore = newFlag
@@ -100,7 +101,7 @@ open class PageDataSource<T> {
     
     open func reset() {
         data.removeAll()
-        onReset()
+        pageDataSourceDidReset()
         
         //        let changed = (hasMore == false) // at last page
         hasMore = false
@@ -115,14 +116,23 @@ open class PageDataSource<T> {
         return !pages.isEmpty
     }
     
-    open func onExtend(pageData: [T], at page: Int) {}
-    
-    open func onReset() {}
-    
+    open func pageDataSourceDidExtend(pageData: [T], at page: Int) {}
+    open func pageDataSourceDidReset() {}
+}
+
+extension PageDataSource {
     private func notifyToDelegate(nextPageIndicatorShouldChange: Bool) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.delegate?.pageDataSourceDidChange(hasNextPage: self.hasMore, nextPageIndicatorShouldChange: nextPageIndicatorShouldChange)
         }
+    }
+    
+    private func getAllObjects() -> [T] {
+        var source: [T] = [T]()
+        for page in data {
+            source += page.pageData
+        }
+        return source
     }
 }
