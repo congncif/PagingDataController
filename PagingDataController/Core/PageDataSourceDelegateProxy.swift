@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SiFUtilities
 
 private struct PageDataSourceDelegation: Equatable {
     var identifier: String
@@ -38,8 +37,8 @@ public final class PageDataSourceDelegateProxy: PageDataSourceDelegate {
     
     public func removeObserver(_ observer: PageDataSourceDelegate?) {
         let newObserver = PageDataSourceDelegation(delegate: observer)
-        guard observers.contains(newObserver) else { return }
-        observers.remove(newObserver)
+        guard let index = observers.firstIndex(of: newObserver) else { return }
+        observers.remove(at: index)
     }
     
     public func removeAllObservers() {
