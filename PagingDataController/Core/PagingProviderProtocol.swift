@@ -17,6 +17,8 @@ import Foundation
 public protocol PagingProviderProtocol {
     associatedtype Paramter
     associatedtype Model
+
     var pageSize: Int { get }
+
     func loadData(parameters: Paramter?, page: Int, completion: @escaping ([Model], Error?) -> Void)
 }

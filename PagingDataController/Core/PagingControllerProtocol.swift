@@ -32,11 +32,14 @@ extension PagingControllerProtocol {
     public var dataSource: PageDataSource<PagingProvider.Model> {
         get {
             return self._associatedObject(self, key: &dataSourceKey) {
-                let source = PageDataSource<PagingProvider.Model>(pageSize: self.provider.pageSize)
+                let source = PageDataSource<PagingProvider.Model>(pageSize: provider.pageSize)
                 return source
             }
         }
-        set { self._associateObject(self, key: &dataSourceKey, value: newValue) }
+        set {
+            newValue.pageSize = provider.pageSize
+            self._associateObject(self, key: &dataSourceKey, value: newValue)
+        }
     }
 
     public weak var delegate: PagingControllerDelegate? {
