@@ -74,7 +74,7 @@ extension PagingControllerViewable where Self: PageDataSourceDelegate {
     public func pageDataSourceDidChange(hasNextPage: Bool, nextPageIndicatorShouldChange shouldChange: Bool) {
         defaultPageDataSourceDidChange(hasNextPage: hasNextPage, nextPageIndicatorShouldChange: shouldChange)
     }
-    
+
     public func defaultPageDataSourceDidChange(hasNextPage: Bool, nextPageIndicatorShouldChange shouldChange: Bool) {
         guard shouldChange else { return }
         let delayTime = DispatchTime.now() + 0.25
@@ -84,3 +84,13 @@ extension PagingControllerViewable where Self: PageDataSourceDelegate {
     }
 }
 
+/// A shorthand to use PagingControllerProtocol for UIViewController
+
+public protocol PagingViewControllable: PagingControllerViewable, PagingControllerConfigurable, PageDataSourceDelegate {}
+
+extension PagingViewControllable where Self: PagingControllerProtocol {
+    public func setupPagingController() {
+        setupForPaging()
+        setupPagingDataSource(delegate: self)
+    }
+}
