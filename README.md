@@ -48,57 +48,61 @@ A controller which implements `PagingDataController` includes a provider and a d
 3. Create `Provider`:
 
 ```swift
-
-import UIKit
-import PagingDataController
-import Alamofire
-
 struct GithubUsersProvider: PagingProviderProtocol {
-    
-    //custom pageSize here
+    // custom pageSize here
     var pageSize: Int = 36
-    
-    func loadData(parameters: AnyObject?, page: Int, completion: (([Dictionary<String, AnyObject>], Error?) -> ())?) {
-        
-        let apiPath = "https://api.github.com/search/users?q=apple&page=\(page+1)&per_page=\(pageSize)"
-        Alamofire.request(apiPath, method: .get).responseJSON { (response) in
+
+    func loadData(parameters: AnyObject?, page: Int, completion: @escaping ([[String: AnyObject]], Error?) -> Void) {
+        let apiPath = "https://api.github.com/search/users?q=apple&page=\(page + 1)&per_page=\(pageSize)"
+        Alamofire.request(apiPath, method: .get).responseJSON { response in
             var error: Error? = response.result.error
             var result: [[String: AnyObject]] = []
-            
+
             defer {
-                completion?(result, error)
+                completion(result, error)
             }
-            
+
             guard let data = (response.result.value as? [String: AnyObject]) else {
                 return
             }
             result = data["items"] as! [[String: AnyObject]]
         }
     }
-    
 }
-
 ```
 
 4. In `ViewController.swift`, Implement the methods of `UITableViewDataSource` or `UICollectionViewDataSource` to render data, make it conforms protocol `PagingControllerProtocol`
 
 ```swift
-//Provider definition
-lazy var provider = GithubUsersProvider()
-```
+// 🚀 Just 4 steps to setup a Paging View Controller
 
-Copy this method and put it below `viewDidLoad()`:
+class GithubUsersViewController: UIViewController, PagingControllerProtocol, PagingViewControllable {
+    @IBOutlet var tableView: UITableView!
 
-```swift
-override func viewDidFinishLayout() {
-    super.viewDidFinishLayout()
-    setupForPaging()
+    // 1️⃣ [Step 1]: Provider definition.
+    lazy var provider = GithubUsersProvider()
+
+    // 2️⃣ [Step 2]: setup paging in single line of code.
+    /******************************************
+     Copy this method into your view controller
+     ******************************************/
+    override func viewDidFinishInitialLayout() {
+        setupPagingController()
+    }
+
+    // 3️⃣ [Step 3]: Pass parameters for fetching data by page, default is nil.
+
+    func parametersForPage(_ page: Int) -> AnyObject? {
+        return nil
+    }
+
+    // 4️⃣ [Step 4]: Handle error when fetching failed.
+
+    func errorWarningForPage(_ page: Int, error: Error) {
+        showErrorAlert(error)
+    }
 }
 ```
-
-* To custom parameters, implement this method ```parametersForPage(_:)```
-* To error handling, implement this method ```errorWarningForPage(_:)```
-
 5. Build & Run to enjoy
 
 <img src="https://i.imgur.com/PFa9mJ2.png" width=375/>
