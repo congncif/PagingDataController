@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PagingDataController'
-  s.version          = '2.1.0'
+  s.version          = '2.1.1'
   s.summary          = 'A Swift pattern to apply paging data to UIViewController'
-  s.swift_versions    = ['4.2', '5.0', '5.1']
+  s.swift_versions    = ['5.0', '5.1']
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -30,7 +30,7 @@ Magic !!!
   s.source           = { :git => 'https://github.com/congncif/PagingDataController.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/congncif'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   
   s.default_subspec = 'Default'
   
